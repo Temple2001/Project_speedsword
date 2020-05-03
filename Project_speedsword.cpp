@@ -11,7 +11,7 @@ SoundID bgm, finalHit, finalHit1, normalHit, normalHit1, normalHit2, normalHit3,
 int arr[150] = { 0, }, Elife[150] = { 0, }, locate[150] = { 0, };
 int count = 0, clear = 0, life = 3, location = 35, NhitCount = 0, FhitCount = 0;
 char name[30] = { 0, };
-float duration = 0.7f;
+float duration = 0.6f;
 bool bgmloop = true;
 
 ObjectID createObject(const char* image, SceneID scene, int x, int y, bool shown) {
@@ -275,6 +275,10 @@ void timerCallback(TimerID timer) {
 			locate[i] += location;
 			locateObject(enemy[i], scene2, 610, 720 - locate[i]);
 			if (locate[i] > 640) {
+				life = 0;
+				hideObject(heart1);
+				hideObject(heart2);
+				hideObject(heart3);
 				ending(false);
 				return;
 			}
